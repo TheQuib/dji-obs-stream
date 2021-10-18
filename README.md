@@ -1,26 +1,39 @@
 # DJI-OBS-Stream
+
 NGINX Server for Windows that will work out of the box to stream video from a DJI Drone
 
+
 # Setting up:
+
 This contains files to run an Nginx web server. It hosts 2 main services: HTTP on port 80 (for testing) and RTMP on port 1935 (for streaming)
 
+
 ## Prerequisites
- - **(Recommended)** Open at least port 1935 (80 for testing) in the Windows Firewall for the RTMP service to leave the computer
+
+- **(Recommended)** Open at least port 1935 (80 for testing) in the Windows Firewall for the RTMP service to leave the computer
  - **(Not Recommended)** Disable the Windows Firewall altogether
    - *I am not responsible for any damage done by opening up the entire firewall*
 
+
 <br>
 
+
 ## Start the server
+
 Use startServer.bat to start the server
  - Closing this window will not stop it
 
+
 ## Stop the server
+
 Use stopServer.bat to stop the server
+
 
 <br>
 
+
 ## Test to make sure the server is working
+
 *You really only need to do this the first time* <br>
 *Do this from a separate device to get the most accurate results*
  - Open a web browser
@@ -32,9 +45,12 @@ Use stopServer.bat to stop the server
  - If this shows a web page, the server is working as intended
  - If this doesn't work, check your firewall to make sure the ports are open
 
+
  <br>
 
+
  ## Send data to server from DJI Go 4 or DJI Fly
+ 
  - Open the stream seetings in your respective app
  - Select either "RTMP" or "Custom"
    - *This selection depends on your app*
@@ -48,9 +64,12 @@ Use stopServer.bat to stop the server
      - You can make *streamKey* any alphabetical character you want
      - *Make sure you save this for later*
 
+
  <br>
 
+
  ## View stream in OBS
+ 
 *Do this on the server*
  - Open OBS
  - In a scene, create a "Media Source" source
@@ -64,3 +83,49 @@ Use stopServer.bat to stop the server
    - Click "OK"
  - The stream should show after a few seconds
    - Depending on the network connection from the app, and to the computer running NGINX, this can take longer
+
+
+<br>
+
+
+## Extra Info
+
+If you would like to change the URL to use something other than `/live`, edit the `nginx.conf` file under `/ServerFiles/conf/` directory.
+<br>
+The default configuration for the RTMP application is:
+<br>
+```
+rtmp {
+    server {
+        listen 1935;
+        application live {
+            live on;
+            interleave on;
+            record off;
+
+        }
+    }
+}
+```
+<br>
+If you change the name of the application, i.e. where it says `application live {`, let's say to `stream`, it will use `/stream` instead.
+<br>
+<br>
+So, the application for `/stream` in `nginx.conf` file would look like this:
+<br>
+
+```
+rtmp {
+    server {
+        listen 1935;
+        application stream {
+            live on;
+            interleave on;
+            record off;
+
+        }
+    }
+}
+```
+<br>
+So, with this, you would connect to rtmp://yourServer/stream/streamKey
