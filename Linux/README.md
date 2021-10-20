@@ -1,11 +1,11 @@
-# DJI-OBS-Stream
+# DJI-OBS-Stream - Linux
 
-Nginx Server for Windows and Linux with RTMP support. Perfect for streaming from a DJI drone other other devices that use the RTMP protocol.
+Set up information for NGINX in Linux for RTMP streaming from a DJI drone or other devices that use the RTMP protocol.
 
 
 # Setting up:
 
-This contains files/tutorial to run an Nginx web server in Windows (Files) and Debian/Ubuntu Linux (tutorial). It hosts 2 services: HTTP on port 80 (for testing) and RTMP on port 1935 (for streaming)
+This directory contains the configuration file needed to run an Nginx web server and a tutorial (below) for downloading/compiling the server.
 
 
 ## Prerequisites
@@ -17,9 +17,64 @@ This contains files/tutorial to run an Nginx web server in Windows (Files) and D
 <br>
 
 
-## Usage
+# Creating the Server
 
-Please refer to the respective directory of your operating system of choice. Each has its own `README.md` file to get you going.
+First thing's first... Log into your server, preferably via SSH so you can paste commands.
+
+
+<br>
+
+
+## Download and Install Software
+
+### Update Repositories
+
+`sudo apt-get update`
+
+### Install Software:
+
+`sudo apt-get install -y git build-essential ffmpeg libpcre3 libpcre3-dev libssl-dev zlib1g-dev`
+
+### Clone the RTMP Module from GitHub
+
+`git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git`
+
+### Download Nginx
+
+`wget http://nginx.org/download/nginx-1.17.6.tar.gz`<br>
+`tar -xf nginx-1.17.6.tar.gz`<br>
+`cd nginx-1.17.6`
+
+### Configure Nginx
+
+`sudo ./configure --prefix=/usr/local/nginx --with-http_ssl_module --add-module=../nginx-rtmp-module`
+
+### Compile Nginx
+
+`sudo make -j 1`<br>
+`sudo make install`
+
+### Clear out Existing Configuration File by Removing It
+
+`sudo rm /usr/local/nginx/conf/nginx.conf`
+
+### Create and Open New Configuration File
+
+ `sudo nano /usr/local/nginx/conf/nginx.conf`
+
+ ### Paste Configuration
+
+ From the file `nginx.conf` in the directory of this `README.md` file, paste the contents
+
+ ### Start Nginx
+
+`sudo /usr/local/nginx/sbin/nginx`
+
+
+<br>
+
+
+# Make sure the server is working and send some data
 
 
 <br>
@@ -87,8 +142,8 @@ If you would like to change the URL to use something other than `/live`, edit th
 <br>
 The default configuration for the RTMP application is:
 <br>
-
-```rtmp {
+```
+rtmp {
     server {
         listen 1935;
         application live {
@@ -100,19 +155,15 @@ The default configuration for the RTMP application is:
     }
 }
 ```
-
 <br>
-
 If you change the name of the application, i.e. where it says `application live {`, let's say to `stream`, it will use `/stream` instead.
-
 <br>
 <br>
-
 So, the application for `/stream` in `Nginx.conf` file would look like this:
-
 <br>
 
-```rtmp {
+```
+rtmp {
     server {
         listen 1935;
         application stream {
@@ -125,15 +176,4 @@ So, the application for `/stream` in `Nginx.conf` file would look like this:
 }
 ```
 <br>
-
-So, with this, you would connect to `rtmp://yourServer/stream/streamKey`
-
-
-<br>
-
-
-## For the best results...
-
-- I would recommend opening a hotspot on the computer running the server if possible. 
-  - This can be easily done in Windows with the built-in hotspot
-  - In some Linux distros, this is built in. Look up the features your distro has to do this there
+So, with this, you would connect to rtmp://yourServer/stream/streamKey
