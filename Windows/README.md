@@ -10,8 +10,8 @@ This directory contains files to run an Nginx web server in Windows. It hosts 2 
 
 ## Prerequisites
 
-- **Required** Open port 1935 in the server firewall for the RTMP service
-- **Optional** (For testing) Open port 80 in the server firewall for the HTTP service
+- **Required** Open port 1935/TCP in the server firewall for the RTMP service
+- **Optional** (For testing) Open port 80/TCP in the server firewall for the HTTP service
 
 <br>
 
@@ -30,7 +30,7 @@ Use stopServer.bat to stop the server
 <br>
 
 
-# Make sure the server is 
+# Using the server
 
 
 ## Test to make sure the server is working

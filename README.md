@@ -1,6 +1,6 @@
 # DJI-OBS-Stream
 
-Nginx Server for Windows and Linux with RTMP support. Perfect for streaming from a DJI drone other other devices that use the RTMP protocol.
+Nginx Server for Windows and Linux with RTMP support. Perfect for streaming from a DJI drone or other devices that use the RTMP protocol.
 
 
 # Setting up:
