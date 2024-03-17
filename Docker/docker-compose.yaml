@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  rmpt_server:
+    image: prochac/dji-obs-stream:latest
+    ports:
+      # Good only for test if nginx is running
+      #- "8080:80"
+      - "1935:1935/udp"
+    volumes:
+      # You may override the provided nginx.conf file by mounting a custom one
+      - ./nginx.conf:/usr/local/nginx/conf/nginx.conf
+
+  rmpt_server_alpine:
+    image: prochac/dji-obs-stream:alpine
+    ports:
+      # Good only for test if nginx is running
+      #- "8080:80"
+      - "1935:1935/udp"
+    volumes:
+      # You may override the provided nginx.conf file by mounting a custom one
+      - ./nginx.conf:/usr/local/nginx/conf/nginx.conf
