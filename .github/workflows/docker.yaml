@@ -1,4 +1,4 @@
-name: build-images-and-publish
+name: build-images-and-publish-to-registry
 
 on:
   push:
