@@ -26,7 +26,7 @@ jobs:
           context: "{{defaultContext}}:Docker"
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: thequib/dji-obs-stream:latest
+          tags: ghcr.io/thequib/dji-obs-stream:latest
 
 
   alpine:
@@ -51,4 +51,4 @@ jobs:
           file: "Dockerfile.alpine"
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: the/dji-obs-stream:alpine
+          tags: ghcr.io/thequib/dji-obs-stream:alpine
