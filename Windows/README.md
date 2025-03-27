@@ -11,6 +11,7 @@ This directory contains files to run an Nginx web server in Windows. It hosts 2 
 ## Prerequisites
 
 - **Required** Open port 1935/TCP in the server firewall for the RTMP service
+- **Required** As of Windows 11 24H2, the Most recent Visual C++ Redistributable is required. Download that [here](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
 - **Optional** (For testing) Open port 80/TCP in the server firewall for the HTTP service
 
 <br>
