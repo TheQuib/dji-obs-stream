@@ -29,46 +29,64 @@ First thing's first... Log into your server, preferably via SSH so you can paste
 
 ### Update Repositories
 
-`sudo apt-get update`
+```
+sudo apt-get update
+```
 
 ### Install Software:
 
-`sudo apt-get install -y git build-essential ffmpeg libpcre3 libpcre3-dev libssl-dev zlib1g-dev`
+```
+sudo apt-get install -y git build-essential ffmpeg libpcre3 libpcre3-dev libssl-dev zlib1g-dev
+```
 
 ### Clone the RTMP Module from GitHub
 
-`git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git`
+```
+git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git
+```
 
 ### Download Nginx
 
-`wget http://nginx.org/download/nginx-1.17.6.tar.gz`<br>
-`tar -xf nginx-1.17.6.tar.gz`<br>
-`cd nginx-1.17.6`
+```
+wget http://nginx.org/download/nginx-1.17.6.tar.gz
+tar -xf nginx-1.17.6.tar.gz
+cd nginx-1.17.6
+```
 
 ### Configure Nginx
 
-`sudo ./configure --prefix=/usr/local/nginx --with-http_ssl_module --add-module=../nginx-rtmp-module`
+```
+sudo ./configure --prefix=/usr/local/nginx --with-http_ssl_module --add-module=../nginx-rtmp-module
+```
 
 ### Compile Nginx
 
-`sudo make -j 1`<br>
-`sudo make install`
+```
+sudo make -j 1
+sudo make install
+```
 
 ### Clear out Existing Configuration File by Removing It
 
-`sudo rm /usr/local/nginx/conf/nginx.conf`
+```
+sudo rm /usr/local/nginx/conf/nginx.conf
+```
 
 ### Create and Open New Configuration File
 
- `sudo nano /usr/local/nginx/conf/nginx.conf`
+```
+sudo nano /usr/local/nginx/conf/nginx.conf
+```
 
- ### Paste Configuration
+### Paste Configuration
 
- From the file `nginx.conf` in the directory of this `README.md` file, paste the contents
+From the file `nginx.conf` in the directory of this `README.md` file, paste the contents
 
- ### Start Nginx
+### Start Nginx
 
-`sudo /usr/local/nginx/sbin/nginx`
+```
+sudo /usr/local/nginx/sbin/nginx
+```
 
 
 <br>
