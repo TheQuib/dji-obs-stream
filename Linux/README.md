@@ -30,7 +30,7 @@ First thing's first... Log into your server, preferably via SSH so you can paste
 ### Update Repositories
 
 ```
-sudo apt-get update
+sudo apt update
 ```
 
 ### Install Software:
